@@ -22,17 +22,22 @@
       <div class="p-2">
         <label>
           <input type="checkbox" class="form-check-input" [checked]="item.completed">
-          @switch (findUser(item.userId)?.name){
-            @case ("Kasun"){
-              <span class="text-primary">Kasun</span>
-            }
-            @case ("Nisali"){
-              <span class="text-success">Nisali</span>
-            }
-            @case ("Senuli"){
-              <span class="text-success fs-4">Senuli</span>
-            }
-          }
+<!--          @switch (findUser(item.userId)?.name){-->
+<!--            @case ("Kasun"){-->
+<!--              <span class="text-primary">Kasun</span>-->
+<!--            }-->
+<!--            @case ("Nisali"){-->
+<!--              <span class="text-success">Nisali</span>-->
+<!--            }-->
+<!--            @case ("Senuli"){-->
+<!--              <span class="text-success fs-4">Senuli</span>-->
+<!--            }-->
+<!--          }-->
+          <ng-container [ngSwitch]="findUser(item.userId)?.name" ]>
+            <span *ngSwitchCase="'Kasun'" class="text-primary">Kasun</span>
+            <span *ngSwitchCase="'Nisali'" class="text-success">Nisali</span>
+            <span *ngSwitchCase="'Senuli'" class="text-success fs-4">Senuli</span>
+          </ng-container>
           {{item.title}}
         </label>
       </div>
