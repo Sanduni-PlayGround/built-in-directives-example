@@ -1,4 +1,43 @@
-<div class="d-flex justify-content-center vh-100 align-items-center">
-  <div class="loader"></div>
-</div>
+<!--<div *ngIf="loading" xmlns:trackBy="http://www.w3.org/1999/xhtml"-->
+<!--     class="d-flex justify-content-center vh-100 align-items-center">-->
+<!--  <div class="loader"></div>-->
+<!--</div>-->
+<!--<div *ngIf="!loading">-->
+<!--  <div *ngFor="let item of todoItems ; trackBy: trackItemFn" class="p-2">-->
+<!--    <label>-->
+<!--      <input type="checkbox" class="form-check-input" [checked]="item.completed">-->
+<!--      {{item.title}}-->
+<!--    </label>-->
+<!--  </div>-->
+<!--</div>-->
 
+@if (loading){
+  <div
+       class="d-flex justify-content-center vh-100 align-items-center">
+    <div class="loader"></div>
+  </div>
+} @else {
+  <div>
+    @for (item of todoItems; track item.id){
+      <div class="p-2">
+        <label>
+          <input type="checkbox" class="form-check-input" [checked]="item.completed">
+          @switch (findUser(item.userId)?.name){
+            @case ("Kasun"){
+              <span class="text-primary">Kasun</span>
+            }
+            @case ("Nisali"){
+              <span class="text-success">Nisali</span>
+            }
+            @case ("Senuli"){
+              <span class="text-success fs-4">Senuli</span>
+            }
+          }
+          {{item.title}}
+        </label>
+      </div>
+    }
+
+  </div>
+
+}
